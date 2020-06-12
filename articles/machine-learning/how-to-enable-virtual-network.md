@@ -379,7 +379,7 @@ except:
     # Subnet to use for AKS
     subnet_name = "default"
     # Create AKS configuration
-    prov_config = AksCompute.provisioning_configuration(location = "eastus2")
+    prov_config = AksCompute.provisioning_configuration(location="eastus2")
     # Set info for existing virtual network to create the cluster in
     prov_config.vnet_resourcegroup_name = "myvnetresourcegroup"
     prov_config.vnet_name = "myvnetname"
@@ -389,15 +389,15 @@ except:
     prov_config.docker_bridge_cidr = "172.17.0.1/16"
 
     # Create compute target
-    aks_target = ComputeTarget.create(workspace = ws, name = "myaks", provisioning_configuration = prov_config)
+    aks_target = ComputeTarget.create(workspace=ws, name="myaks", provisioning_configuration=prov_config)
     # Wait for the operation to complete
-    aks_target.wait_for_completion(show_output = True)
+    aks_target.wait_for_completion(show_output=True)
     
     # Update AKS configuration to use an internal load balancer
     update_config = AksUpdateConfiguration(None, "InternalLoadBalancer", subnet_name)
     aks_target.update(update_config)
     # Wait for the operation to complete
-    aks_target.wait_for_completion(show_output = True)
+    aks_target.wait_for_completion(show_output=True)
 ```
 
 __Azure CLI__
